@@ -1,46 +1,71 @@
-
 <div align="center">
-  <h1>Hi, I'm Ziyi Pan 👋</h1>
-  <p><strong>Undergraduate Researcher @ South China University of Technology (SCUT)</strong></p>
-  <p><em>Researching efficient reasoning models · Exploring embodied intelligence</em></p>
-
-  <a href="https://github.com/pytenter">
-    <img src="https://img.shields.io/badge/GitHub-pytenter-24292f?style=flat-square&logo=github&logoColor=white" alt="GitHub profile" />
-  </a>
-  <a href="https://github.com/pytenter/GDN-quantization">
-    <img src="https://img.shields.io/badge/Research-GDN%20%26%20KDA%20INT8-2563eb?style=flat-square" alt="GDN/KDA INT8 research" />
-  </a>
+  <img src="https://pytenter.github.io/static/assets/portrait.webp?v=20261109-avatar" width="144" height="132" alt="潘子逸的插画头像" />
+  <h1>潘子逸 · Ziyi Pan</h1>
+  <p><strong>华南理工大学 · 未来技术学院</strong></p>
+  <p>数据科学与大数据技术专业 · 2024 级本科生</p>
+  <p>具身智能 · VLA 持续学习 · 大模型高效推理与量化</p>
+  <p>
+    <a href="https://pytenter.github.io/">个人学术主页</a>
+    &nbsp;·&nbsp;
+    <a href="mailto:ftben@mail.scut.edu.cn">ftben@mail.scut.edu.cn</a>
+  </p>
 </div>
 
----
+## 关于我
 
-## 🧭 About Me
+我主要关注**具身智能与高效推理**：一方面研究视觉—语言—动作模型（VLA）在顺序学习中的旧任务保持，另一方面探索循环状态与 KV Cache 的低比特表示，分析量化误差在长跨度推理中的累积与传播。
 
-I'm an undergraduate majoring in **Data Science and Big Data Technology** at **SCUT**. My primary research interest is **efficient large language model inference**, with a focus on low-bit quantization for long-context and long-chain-of-thought reasoning.
+目前的研究与实践包括：
 
-- 🔬 **Currently working on:** Persistent **INT8 recurrent-state quantization for GDN/KDA** — my ongoing **sole-first-author research**.
-- 📝 **Recent research:** **TrajKV**, a trajectory-aware mixed-precision KV-cache quantization method for long-CoT reasoning (**co-first author; manuscript completed**).
-- 🌱 **Exploring:** **Embodied AI**, especially vision-language-action (VLA) models, robot learning, and vision-language navigation.
-- 💡 **What I enjoy:** Turning research ideas into reproducible experiments, careful evaluations, and practical systems.
+- **VLA 持续学习**：共享与任务专属 LoRA、任务参数保护、动作条件原型回放。
+- **循环状态量化**：GDN / KDA 的持续 INT8 状态存储、可学习正交旋转、状态与局部输出联合重建。
+- **KV Cache 压缩**：面向长思维链推理的混合精度分配与压缩域解码。
+- **机器人实践**：LIBERO 仿真实验、Kinova Gen3 数据流程、模型微调与闭环评估。
 
-## 🚀 Selected Work
+## 论文与研究
 
-| Project | Focus |
-| :--- | :--- |
-| **[GDN/KDA Recurrent-State INT8 Quantization](https://github.com/pytenter/GDN-quantization)** <br> *Ongoing research · Sole first author* | Persistent **per-token INT8 quantize–dequantize–writeback** for recurrent states; Hadamard / learnable rotations, axis-aware quantization, and long-horizon reasoning evaluation. |
-| **TrajKV: Trajectory-Aware Mixed-Precision KV Cache Quantization for Long-CoT Reasoning** <br> *Manuscript completed · Co-first author* | Attention-trajectory-based importance and reconstruction-aware **INT2/INT4 precision allocation** for KV-cache compression (approximately **2.50 effective bits/element**). |
+### LeaRSQ：面向线性注意力循环状态量化的可学习旋转
 
-Other public work: [PatternKV reproduction & experiments](https://github.com/pytenter/Bounded-pattrenKV-method) · [Multimodal RAG paper collection](https://github.com/pytenter/Multi-Model-RAG)
+**第一作者 · 稿件已完成**
 
-## 🛠️ Tools & Technologies
+- **研究问题**：线性注意力模型的循环状态需要在每步解码中反复读取和更新，INT8 量化误差可能沿循环路径持续传播，固定旋转难以适配不同模型的状态分布。
+- **算法创新**：冻结预训练参数，在 GDN 的 Key 侧和 KDA 的 Value 侧学习正交旋转；联合优化局部输出与状态重建，使用 H64 截断反向传播考虑多步误差。
+- **贡献**：连接适配模型的表示学习与实际推理路径，覆盖 Qwen3.5-9B / GDN 和 Ling-3.0-tiny / KDA；稿件描述了 SGLang 中冻结旋转与融合状态更新的集成方案。
 
-![Python](https://img.shields.io/badge/Python-3776AB?style=flat-square&logo=python&logoColor=white)
-![C++](https://img.shields.io/badge/C%2B%2B-00599C?style=flat-square&logo=cplusplus&logoColor=white)
-![PyTorch](https://img.shields.io/badge/PyTorch-EE4C2C?style=flat-square&logo=pytorch&logoColor=white)
-![Git](https://img.shields.io/badge/Git-F05032?style=flat-square&logo=git&logoColor=white)
-![Linux](https://img.shields.io/badge/Linux-FCC624?style=flat-square&logo=linux&logoColor=black)
-![LaTeX](https://img.shields.io/badge/LaTeX-008080?style=flat-square&logo=latex&logoColor=white)
+[查看研究介绍与方法图 →](https://pytenter.github.io/#learsq)
 
-## 🔭 Looking Ahead
+### TrajKV：面向长思维链推理的轨迹感知混合精度 KV Cache 量化
 
-I'm gradually extending my interests from **efficient model inference** toward **embodied intelligence**. I'm currently studying robot manipulation policies, VLA models, 3D perception, and sim-to-real transfer, with a longer-term interest in making embodied models more efficient and practical.
+**共同第一作者 · ICASSP 在投**
+
+- **研究问题**：低比特 KV Cache 误差会在后续注意力计算与自回归生成中递归传播，不同历史位置对后续解码的影响并不相同。
+- **算法创新**：联合历史注意力反映的因果重要性与 INT2→INT4 重建收益，将符合条件的 25% 历史 Value 升为 INT4，其余历史 Value 与 Key 保持 INT2。
+- **贡献**：结合轨迹误差诊断、选择性精度保护与 K2/V2/V4 压缩域解码，避免完整物化历史 FP16 KV Cache。论文在 DeepSeek-R1-Distill-Llama-8B 上报告：AIME24 准确率由匹配的 PatternKV-Base 的 35.56% 提升至 53.33%。
+
+[查看研究介绍与实验结果 →](https://pytenter.github.io/#trajkv)
+
+## 公开项目
+
+### [cl-VLA](https://github.com/pytenter/cl-VLA) · VLA 持续学习与机器人实践
+
+基于 **π0.5** 适配 CL-LoRA 与动作条件原型回放，研究冻结主要预训练权重、仅保留少量历史示范时的新任务适应与旧任务保持。
+
+- **模型适配**：LoRA-A 正交初始化并冻结；浅层 LoRA-B 跨任务共享，深层 LoRA-B 按任务保存，通过梯度与优化器更新屏蔽保护旧任务参数。
+- **仿真评估**：LIBERO 四任务顺序学习的最终平均成功率，在单个训练种子下，CL-LoRA 原型回放为 **91%**，同预算均匀回放为 **87%**。
+- **真机实践**：完成 **107 条真实示范轨迹**的采集与整理、状态及动作标签重建，并开展 MuJoCo / Kinova Gen3 闭环评估实践。
+
+[查看项目介绍、录屏与机械臂过程图 →](https://pytenter.github.io/#projects)
+
+其他公开仓库：[PatternKV 复现与实验](https://github.com/pytenter/Bounded-pattrenKV-method) · [多模态 RAG 论文整理](https://github.com/pytenter/Multi-Model-RAG)
+
+## 荣誉奖项
+
+- **国家奖学金**，2025—2026 学年。
+- **美国大学生数学建模竞赛 H 奖**。
+- **Mathorcup 数学建模竞赛区域赛一等奖**。
+
+## 技术与实践
+
+- **语言与工具**：Python、C/C++、PyTorch、Linux、Git、LaTeX。
+- **模型与推理**：LoRA / CL-LoRA、原型回放、循环状态与 KV Cache 量化、SGLang 推理集成。
+- **实验与数据**：LIBERO、MuJoCo、Kinova Gen3、示范轨迹整理、状态与动作标签重建、模型微调与评估。
