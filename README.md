@@ -56,8 +56,6 @@
 
 [查看真机录屏与机械臂过程图 →](https://pytenter.github.io/#project-video-title)
 
-其他公开仓库：[PatternKV 复现与实验](https://github.com/pytenter/Bounded-pattrenKV-method) · [多模态 RAG 论文整理](https://github.com/pytenter/Multi-Model-RAG)
-
 ## 技术与实践
 
 - **语言与工具**：Python、C/C++、PyTorch、Linux、Git、LaTeX。
